@@ -4,14 +4,25 @@ const path = require("path");
 const mongoose = require("mongoose");
 const chalk = require("chalk");
 const bodyParser = require("body-parser");
-const countriesModel = require("./models/Country");
 const expressSession = require("express-session");
+const app = express();
 
-const caloriecalculator = require("./controllers/taster");
 
+const caloriecalculator = require("./controllers/fooditems");
+const res = require("express/lib/response");
 
 const app = express();
 app.set("view engine", "ejs");
+
+app.get("/", (req, res) => {
+    res.render("index.ejs");
+});
+
+app.get("/createitems", (req, res) => {
+    res.render('createdriver', {errors: {}})
+});
+
+app.post("/createitems", fooditemController.create);
 
 const { PORT, MONGODB_URI } = process.env;
 
@@ -24,3 +35,10 @@ mongoose.connection.on("error", (err) => {
   );
   process.exit();
 });
+
+app.listen(PORT, () => {
+    console.log(
+      `Example app listening at http://localhost:${PORT}`,
+      chalk.green("✓")
+    );
+  });
