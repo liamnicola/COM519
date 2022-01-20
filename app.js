@@ -19,6 +19,7 @@ const userController = require("./controllers/user");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(expressSession({ secret: 'foo barr', cookie: { expires: new Date(253402300000000) } }))
 
 global.user = false;
 app.use("*", async (req, res, next) => {
@@ -51,7 +52,7 @@ app.get("/index", (req, res) => {
   res.render("index.ejs");
 });
 
-app.get("/create-fooditem", (req, res) => {
+app.get("/create-fooditem", authMiddleware, (req, res) => {
   res.render("create-fooditem", { errors: {} });
 });
 
