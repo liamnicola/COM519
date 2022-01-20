@@ -1,9 +1,9 @@
 {
   "name": "com519",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": ".js",
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "nodemon app.js",
     "start": "node app.js",
     "seedProduction": "cross-env NODE_ENV=production node seeder.js",
     "seed": "node seeder.js"
@@ -20,12 +20,14 @@
   },
   "homepage": "https://github.com/liamnicola/COM519#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.19.1",
     "chalk": "^5.0.0",
     "dotenv": "^13.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.2",
     "express-session": "^1.17.2",
+    "md5": "^2.3.0",
     "mongodb": "^4.3.0",
     "mongoose": "^6.1.6",
     "node": "^17.3.1"

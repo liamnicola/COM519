@@ -6,9 +6,12 @@
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
     crossorigin="anonymous">
     
-    
+
+
     <body>
         
+      <%- include('./common/header.ejs') %>
+
         
         <h1>Calorie Calculator</h1>
 
@@ -37,11 +40,10 @@
                 </div>
             
                 <div class="field-outer">
-                  <label for="height" class="top-label">Height:</label>
+                  <label for="height" class="top-label">Height cm:</label>
                   <div class="field-items">
                    <div class="field">
                       <input type="text" name="height_cm" id="height-cm" inputmode="numeric" pattern="[0-9]*">
-                      <label for="height-cm">or centimeters</label>
                     </div>  
                   </div>
                 </div>

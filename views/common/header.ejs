@@ -12,7 +12,7 @@
 
     <style>
         body {
-            background-color: grey;
+            background-color: #41b3a3;
         }
 
         table{
@@ -27,7 +27,7 @@
         }
 
         nav{
-            background-color: greenyellow;
+            background-color: #85dcb8;
             color: white;
         }
 
@@ -39,9 +39,15 @@
 
 </head>
 <body>
-    <nav class ="nav justify-content-center">
-        <a class="nav-link" href="index">Homepage</a>
-        <a class="navlink" href="calorietracker">Calorie Tracker</a>
-    </nav>
+    <nav class="nav justify-content-center">
+        <a class="nav-link" href="index">Home</a>
+        <a class="nav-link" href="fooditems">Food Items</a>
+        <% if(!user) { %>
+        <a class="nav-link" href="logout"> <%= user.email %> (Logout) </a> <%
+        }%> <% if(!user) { %>
+        <a class="nav-link" href="login"> Login </a>
+        <a class="nav-link" href="join"> Register </a>
+        <% } %>
+    </nav> 
 </body>
 </html>
