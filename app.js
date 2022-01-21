@@ -20,6 +20,7 @@ const userController = require("./controllers/user");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressSession({ secret: 'foo barr', cookie: { expires: new Date(253402300000000) } }))
+app.use(express.static("public"));
 
 global.user = false;
 app.use("*", async (req, res, next) => {
@@ -62,6 +63,8 @@ app.get("/fooditems", fooditemsController.list);
 app.get("/fooditems/delete/:id", fooditemsController.delete);
 app.get("/fooditems/update/:id", fooditemsController.edit);
 app.post("/fooditems/update/:id", fooditemsController.update);
+
+
 
 app.get("/join", (req, res) => {
   res.render('create-user', { errors: {} })

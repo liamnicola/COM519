@@ -61,7 +61,7 @@ exports.edit = async (req, res) => {
   exports.update = async (req, res) => {
     const id = req.params.id;
     try {
-      const taster = await Fooditems.updateOne({ _id: id }, req.body);
+      const fooditems = await Fooditems.updateOne({ _id: id }, req.body);
       res.redirect('/fooditems');
     } catch (e) {
       res.status(404).send({
@@ -69,3 +69,18 @@ exports.edit = async (req, res) => {
       });
     }
   };
+
+  exports.count = async (req, res) => {
+    try {
+        console.log(req.query)
+        const message = req.query.message;
+        const fooditems = await Fooditems.find({count});
+        res.render("fooditems", {fooditems: fooditems, message: message});
+
+    } catch (e) {
+        res.status(404).send({ message: "could not list food items"});
+
+    }
+
+};
+  

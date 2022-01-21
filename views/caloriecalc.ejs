@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="caloriecalculator.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
+    rel="stylesheet" 
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
+    crossorigin="anonymous">
+    
+
+
+    <body>
+        <%- include('common/header'); -%>
+    <div class="container">
+        
+     <% if (message) {   %> 
+      <div class="row justify-content-md-center">
+        <div class="alert alert-primary" role="alert">
+              <%= message %>
+        </div>
+      </div>
+    
+    <% } %>
+    
+    <h1 class="text-justify"> Food Items  </h1>
+    <div class="col-md-12 col-md-offset-2  justify-content-center">
+      <a role="button" class="btn btn-primary btn-xs" href="/create-fooditem">Create a new Food Item</a> 
+    
+    </div>
+      
+      <div class="col-md-12 col-md-offset-2">
+      
+        <table class="table table-striped custab">
+        <thead>
+            <tr>
+                <th>Food Name</th>
+                <th>Calories</th>
+                <th>Carbs</th>
+                <th>Fats</th>
+                <th>Protein</th>
+    
+            </tr>
+    
+            <%  
+            
+              fooditems.forEach(fooditems => {
+                
+            %>
+    
+                <tr>
+                    <td><%=  fooditems.foodName  %></td>
+                    <td><%=  fooditems.calories.count %></td>
+                    <td><%=  fooditems.carbs.count %></td>
+                    <td><%=  fooditems.fats.count  %></td>
+                    <td><%=  fooditems.protein.count  %></td>
+                    
+                </tr>
+                
+             <%  
+              });
+             %>
+    
+    
+           
+        </thead>
+              
+        </table>
+    
+         
+        </div>
+        
+      
+        <%- include('common/footer') -%>
+      </body>
+    </html>
