@@ -1,0 +1,15 @@
+body{
+    background-color: rgba(255, 255, 128, .5);
+    color: #6575a2;
+
+}
+
+div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+
+}

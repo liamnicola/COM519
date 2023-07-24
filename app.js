@@ -14,6 +14,7 @@ const { PORT, MONGODB_URI } = process.env;
 
 
 const fooditemsController = require("./controllers/fooditems");
+const calorieController = require("./controllers/calories");
 const userController = require("./controllers/user");
 
 
@@ -21,12 +22,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressSession({ secret: 'foo barr', cookie: { expires: new Date(253402300000000) } }))
 app.use(express.static("public"));
+app.use(express.static(__dirname + '/public'));
 
 global.user = false;
 app.use("*", async (req, res, next) => {
   if (req.session.userID && !global.user) {
     const user = await User.findById(req.session.userID);
     global.user = user;
+    console.log(user)
   }
   next();
 })
@@ -39,6 +42,7 @@ const authMiddleware = async (req, res, next) => {
   next()
 }
 
+
 app.get("/logout", async (req, res) => {
   req.session.destroy();
   global.user = false;
@@ -46,12 +50,42 @@ app.get("/logout", async (req, res) => {
 })
 
 app.get("/", (req, res) => {
-    res.render("index.ejs");
+  res.render("landing");
 });
 
-app.get("/index", (req, res) => {
-  res.render("index.ejs");
+
+app.get("/home", (req, res) => {
+  let calories = 0
+  res.render("index", {calories});
 });
+
+//res.send("Calorie Goal is:" + calories.toFixed(0))
+
+app.post("/home", function(req, res){
+  let calories = 0
+  console.log(req.body.radio)
+  if(req.body.gender == 'Female') {
+    //females  
+calories = 655.09 + (9.56 * req.body.weight) + (1.84 * req.body.height) - (4.67 * req.body.age);
+}  else {
+    //males
+calories = 66.47 + (13.75 * req.body.weight) + (5 * req.body.height) - (6.75 * req.body.age);
+}
+
+if(req.body.radio == "1"){
+  calories= 1.2 * calories
+} else if(req.body.radio == "2"){
+  calories= 1.55 * calories
+} else if(req.body.radio == "3"){
+  calories= 1.7 * calories
+} else {
+  calories = calories
+}
+
+calories = calories.toFixed(0)
+res.render("index", {calories})
+});
+
 
 app.get("/create-fooditem", authMiddleware, (req, res) => {
   res.render("create-fooditem", { errors: {} });
@@ -65,7 +99,9 @@ app.get("/fooditems/update/:id", fooditemsController.edit);
 app.post("/fooditems/update/:id", fooditemsController.update);
 
 
-
+app.get("/daily", (req, res) => {
+  res.render('daily')
+});
 app.get("/join", (req, res) => {
   res.render('create-user', { errors: {} })
 });
@@ -94,5 +130,4 @@ app.listen(PORT, () => {
       `Example app listening at http://localhost:${PORT}`,
     );
   });
-
 

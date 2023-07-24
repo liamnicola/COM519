@@ -13,7 +13,7 @@ exports.login = async (req, res) => {
         if (match) {
             req.session.userID = user._id;
             console.log(req.session.userID);
-            res.redirect('/');
+            res.redirect("/home");
             return
         }
 
@@ -32,7 +32,7 @@ exports.create = async (req, res) => {
 
         const user = new User({ email: req.body.email, password: req.body.password });
         await user.save();
-        res.redirect('/?message=user saved')
+        res.redirect('/home/?message=user saved')
     } catch (e) {
         if (e.errors) {
             console.log(e.errors);
