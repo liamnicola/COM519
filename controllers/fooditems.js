@@ -58,6 +58,7 @@ exports.edit = async (req, res) => {
     }
   };
 
+ 
   exports.update = async (req, res) => {
     const id = req.params.id;
     try {
@@ -70,12 +71,13 @@ exports.edit = async (req, res) => {
     }
   };
 
+
   exports.count = async (req, res) => {
     try {
         console.log(req.query)
         const message = req.query.message;
         const fooditems = await Fooditems.find({count});
-        res.render("fooditems", {fooditems: fooditems, message: message});
+        res.render("daily", {fooditems: fooditems, message: message});
 
     } catch (e) {
         res.status(404).send({ message: "could not list food items"});
