@@ -3,6 +3,7 @@
 html, body {
     margin: 0;
     padding: 0;
+    color: black;
   }
   .title{
     text-align: center;
@@ -15,7 +16,8 @@ html, body {
     font-size: 1rem;
     line-height: 1.3;
     border-radius: 0.5%;
-    font-family: Helvetica Neue,Helvetica, Arial, sans-serif;
+    background-color: #AFECE7;
+    color: black;
   }
   
   .form-fields {
@@ -114,7 +116,7 @@ html, body {
  }
  .subtitle{
   text-decoration: underline;
-
+  margin-top: 10px;
   text-align: center;
 
  }
@@ -123,7 +125,8 @@ html, body {
   float: left;
   width: 45%;
   margin: 10px;
-  background-color: #f3f3f3;
+  background-color: #AFECE7;
+  border: solid 1px;
 }
 
  .info-div h3{
@@ -141,4 +144,8 @@ html, body {
       color: white;
     text-decoration: none;
   }
+}
+
+p {
+  margin: 1%;
 }

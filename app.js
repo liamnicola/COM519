@@ -14,7 +14,6 @@ const { PORT, MONGODB_URI } = process.env;
 
 
 const fooditemsController = require("./controllers/fooditems");
-const logController = require("./controllers/log");
 const userController = require("./controllers/user");
 
 
@@ -98,9 +97,6 @@ app.get("/fooditems/delete/:id", fooditemsController.delete);
 app.get("/fooditems/update/:id", fooditemsController.edit);
 app.post("/fooditems/update/:id", fooditemsController.update);
 
-app.post("/add-to-log", fooditemsController.addToLog);
-
-app.get("/daily", logController.list)
 
 app.get("/join", (req, res) => {
   res.render('create-user', { errors: {} })
