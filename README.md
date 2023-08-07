@@ -1,4 +1,4 @@
-# COM519
+# Calorie App
 This project is a web application that stores foods from users and displays all nutritional values. All data is stored into a MongoDB database 
 
 ## Using this application
